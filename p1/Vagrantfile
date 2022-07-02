@@ -1,0 +1,93 @@
+# Запуск из папки с Vagrantfile командой:
+# vagrant up
+
+# Остановка из папки с Vagrantfile командой:
+# vagrant halt
+
+# Очистка(удаление) из папки с Vagrantfile командой:
+# vagrant destroy
+
+# Коннект к серверу по ssh
+# vagrant ssh bnaibS
+
+# Коннект к вокеру по ssh
+# vagrant ssh bnaibSW
+
+# Подтвердить IP
+# ip a
+
+# k get nodes -o wide
+
+SEVER_NAME = 'bnaibS'
+SERVER_IP = '192.168.42.110'
+
+CLIENT_NAME = 'bnaibSW'
+CLIENT_IP = '192.168.42.111'
+
+VB_CPU = 1
+VB_RAM = 1024
+
+M_VM = 'virtualbox'
+
+VM_BOX = "bento/centos-8"
+# VM_BOX_URL = "https://app.vagrantup.com/bento/boxes/centos-8/versions/202112.19.0/providers/virtualbox.box"
+# VM_BOX_URL = "file:////Users/bnaib/goinfre/Images/centos8.virtualbox"
+VM_BOX_URL = "file://~/goinfre/Images/centos8.virtualbox"
+VM_BOX_CHECK_UPDATE = false
+
+Vagrant.configure("2") do |config|
+    config.vm.box = VM_BOX
+    config.vm.box_url = VM_BOX_URL
+    config.vm.box_check_update = VM_BOX_CHECK_UPDATE
+
+    config.vm.define SEVER_NAME do |control|
+        control.vm.hostname = SEVER_NAME
+        control.vm.network :private_network, ip: SERVER_IP
+        control.vm.provider :virtualbox do |vb|
+            vb.customize ["modifyvm", :id, "--name", SEVER_NAME]
+            vb.memory = VB_RAM
+            vb.cpus = VB_CPU
+            # --natdnshostresolver<1-N> on|off - Makes the NAT engine use the host's resolver mechanisms to handle DNS requests
+            # Настройка virtualbox
+            # Заставляет механизм NAT использовать механизмы преобразователя хоста для обработки DNS-запросов
+            vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+            # --natdnsproxy<1-N> on|off: Makes the NAT engine proxy all guest DNS requests to the host's DNS servers
+            # Настройка virtualbox
+            # Делает механизм NAT прокси-сервером для всех гостевых DNS-запросов к DNS-серверам хоста.
+            vb.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
+        end
+
+        control.vm.synced_folder ".", "/vagrant"
+
+        # Копируем ключ для доступа по SSH
+        control.vm.provision "file", source: "~/.ssh/id_rsa.pub", destination: "/tmp/id_rsa.pub"
+
+        # Копируем ключ для доступа к серверу
+        control.vm.provision "file", source: "~/.ssh/id_rsa", destination: "/tmp/id_rsa"
+
+        # privileged: true - команды будет выполняться из под sudo
+        control.vm.provision "shell", privileged: true, path: "scripts/server.sh"
+    end
+
+    config.vm.define CLIENT_NAME do |control|
+        control.vm.hostname = CLIENT_NAME
+        control.vm.network :private_network, ip: CLIENT_IP
+        control.vm.provider :virtualbox do |vb|
+            vb.customize ["modifyvm", :id, "--name", CLIENT_NAME]
+            vb.memory = VB_RAM
+            vb.cpus = VB_CPU
+            vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+            vb.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
+        end
+
+        control.vm.synced_folder ".", "/vagrant"
+
+        # Копируем ключ для доступа по SSH
+        control.vm.provision "file", source: "~/.ssh/id_rsa.pub", destination: "/tmp/id_rsa.pub"
+
+        # Копируем ключ для доступа к серверу
+        control.vm.provision "file", source: "~/.ssh/id_rsa", destination: "/tmp/id_rsa"
+
+        control.vm.provision "shell", privileged: true, path: "scripts/client.sh"
+    end
+end
