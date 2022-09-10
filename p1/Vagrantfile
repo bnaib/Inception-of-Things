@@ -1,38 +1,18 @@
-# Запуск из папки с Vagrantfile командой:
-# vagrant up
-
-# Остановка из папки с Vagrantfile командой:
-# vagrant halt
-
-# Очистка(удаление) из папки с Vagrantfile командой:
-# vagrant destroy
-
-# Коннект к серверу по ssh
-# vagrant ssh bnaibS
-
-# Коннект к вокеру по ssh
-# vagrant ssh bnaibSW
-
-# Подтвердить IP
-# ip a
-
-# k get nodes -o wide
-
 SEVER_NAME = 'bnaibS'
-SERVER_IP = '192.168.42.110'
+SERVER_IP = '192.168.56.110'
 
 CLIENT_NAME = 'bnaibSW'
-CLIENT_IP = '192.168.42.111'
+CLIENT_IP = '192.168.56.111'
 
 VB_CPU = 1
 VB_RAM = 1024
 
 M_VM = 'virtualbox'
 
-VM_BOX = "bento/centos-8"
-# VM_BOX_URL = "https://app.vagrantup.com/bento/boxes/centos-8/versions/202112.19.0/providers/virtualbox.box"
-# VM_BOX_URL = "file:////Users/bnaib/goinfre/Images/centos8.virtualbox"
-VM_BOX_URL = "file://~/goinfre/Images/centos8.virtualbox"
+VM_BOX = "bento/centos-stream-8"
+# VM_BOX_URL = "https://app.vagrantup.com/bento/boxes/centos-stream-8/versions/202206.03.0/providers/virtualbox.box"
+VM_BOX_URL = "file://~/goinfre/Images/centos8stream.virtualbox"
+
 VM_BOX_CHECK_UPDATE = false
 
 Vagrant.configure("2") do |config|

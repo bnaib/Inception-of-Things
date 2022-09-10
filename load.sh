@@ -15,7 +15,7 @@ if ! [ -d ~/goinfre/Images ]; then
     echo 'Created "~/goinfre/Images"'
 fi
 if ! [ -f ~/goinfre/Images/centos8.virtualbox ]; then
-    echo "Нет файла образа ~/goinfre/Images/centos8.virtualbox"
-    echo "Скачайте его по ссылке https://app.vagrantup.com/bento/boxes/centos-8/versions/202112.19.0/providers/virtualbox.box"
-    echo "Сохранив как ~/goinfre/Images/centos8.virtualbox"
+    echo "Нет файла образа ~/goinfre/Images/centos8stream.virtualbox"
+    echo "Скачайте его по ссылке https://app.vagrantup.com/bento/boxes/centos-stream-8/versions/202206.03.0/providers/virtualbox.box"
+    echo "Сохранив как ~/goinfre/Images/centos8stream.virtualbox"
 fi

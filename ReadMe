@@ -1,0 +1,19 @@
+# Запуск из папки с Vagrantfile командой:
+# vagrant up
+
+# Остановка из папки с Vagrantfile командой:
+# vagrant halt
+
+# Очистка(удаление) из папки с Vagrantfile командой:
+# vagrant destroy
+
+# Коннект к серверу по ssh
+# vagrant ssh bnaibS
+
+# Коннект к вокеру по ssh
+# vagrant ssh bnaibSW
+
+# Подтвердить IP
+# ip addr
+
+# k get nodes -o wide
