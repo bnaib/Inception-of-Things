@@ -25,7 +25,7 @@ metadata:
 data:
   gitlab.rb: |-
     prometheus['monitor_kubernetes'] = false
-    external_url 'http://192.168.42.110:8081/'
+    external_url 'http://192.168.56.18:8081/'
     gitlab_rails['initial_root_password'] = "test12345"
     nginx['listen_port'] = 80
     gitlab_rails['registry_enabled'] = true

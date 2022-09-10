@@ -1,9 +1,5 @@
 #!/usr/bin/env bash
 
-#CentOS8 31 декабря 2021 года была отправлена в архив - правим ссылки
-sudo sed -i 's/mirrorlist/#mirrorlist/g' /etc/yum.repos.d/CentOS-*
-sudo sed -i 's|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g' /etc/yum.repos.d/CentOS-*
-
 sudo yum install -y net-tools yum-utils epel-release
 
 # Устанавливаем Docker
@@ -16,4 +12,4 @@ curl -LO "https://dl.k8s.io/release/$(curl -sL https://dl.k8s.io/release/stable.
 sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
 
 # Устанавливаем K3D
-curl -s https://raw.githubusercontent.com/k3d-io/k3d/main/install.sh | bash
+curl -s https://raw.githubusercontent.com/rancher/k3d/main/install.sh | bash
