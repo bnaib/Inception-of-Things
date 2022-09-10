@@ -1,20 +1,13 @@
 #!/usr/bin/env bash
 
 # требуется уже установленная виртуальня машина с CentOS 7 
-# так же требуется пробросить порты у машины TCP/пусто/22/пусто/22
+# https://mirror.yandex.ru/centos/7/isos/x86_64/
 # так же требестся сделать второй сетевой адаптер (Виртуальный адаптер хоста)
-# так же требуется настроить DNS /etc/sysconfig/network-scripts (ONBOOT=yes DNS1=8.8.8.8)
+# так же требуется настроить /etc/sysconfig/network-scripts/ifcfg-enp0s8 (ONBOOT=yes DNS1=8.8.8.8)
 
-# список namesspaces - команда kubectl get namespaces
-# состояние конкретного namespace - kubectl get namespaces <name>
-# описание namespace - kubectl describe namespaces <name>
-
-
-
-# echo -n "Введите IP виртуальной машины: "
-# read CLIENT_IP
-export CLIENT_IP=127.0.0.1
-export CLIENT_PORT=2222
+echo "Введите IP виртуальной машины: "
+read CLIENT_IP
+export CLIENT_PORT=22
 export CLIENT_NAME=root
 export CLIENT_HOME=/root
 scp -P ${CLIENT_PORT} -r ./scripts ${CLIENT_NAME}@${CLIENT_IP}:~/

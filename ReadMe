@@ -47,3 +47,11 @@
 # k get all
 
 # k exec <pod-name>  -it -- /bin/sh
+
+
+# https://mirror.yandex.ru/centos/7/isos/x86_64/
+
+# список namesspaces - команда kubectl get namespaces
+# состояние конкретного namespace - kubectl get namespaces <name>
+# описание namespace - kubectl describe namespaces <name>
+
