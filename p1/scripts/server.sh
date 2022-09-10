@@ -18,7 +18,7 @@ echo "alias k=kubectl" >> /root/.bashrc
 echo "alias k='kubectl'" >> /home/vagrant/.bashrc 
 
 export K3S_KUBECONFIG_MODE="644"
-export INSTALL_K3S_EXEC="server --cluster-init --node-ip=192.168.56.110"
+export INSTALL_K3S_EXEC="server --cluster-init --node-ip=192.168.42.110"
 curl -sfL https://get.k3s.io | sh -
 
 cp /var/lib/rancher/k3s/server/token /vagrant/token

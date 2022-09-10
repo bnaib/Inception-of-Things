@@ -1,13 +1,11 @@
 SEVER_NAME = 'bnaibS'
-SERVER_IP = '192.168.56.110'
+SERVER_IP = '192.168.42.110'
 
 CLIENT_NAME = 'bnaibSW'
-CLIENT_IP = '192.168.56.111'
+CLIENT_IP = '192.168.42.111'
 
 VB_CPU = 1
 VB_RAM = 1024
-
-M_VM = 'virtualbox'
 
 VM_BOX = "bento/centos-stream-8"
 # VM_BOX_URL = "https://app.vagrantup.com/bento/boxes/centos-stream-8/versions/202206.03.0/providers/virtualbox.box"
