@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: http://gitlab.gitlab.svc.cluster.local:8081/bnaib/bnaib_iot_app_config
+    repoURL: http://192.168.56.20:8081/bnaib/bnaib_iot_app_config.git
     targetRevision: HEAD
     path: p3/configs
   destination:
